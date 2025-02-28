@@ -8,18 +8,21 @@ public class Player : MonoBehaviour
     public Vector3 mousePositionG;
     Camera cam;
     public float yPos;
+    public Rigidbody2D body;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         cam = Camera.main;
+        body = GetComponent<Rigidbody2D>();
+        
     }
 
     // Update is called once per frame
     void Update()
     {
         mousePositionG = cam.ScreenToWorldPoint(Input.mousePosition);
-        newPosition = Vector2.MoveTowards(transform.position, mousePositionG, speed * Time.fixedDeltaTime);
-        transform.position = newPosition;
-
+        newPosition = mousePositionG;
+        body.MovePosition(newPosition);
+        
     }
 }
